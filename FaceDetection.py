@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+import sys
 
 #class for main face in image
 class detectFace():
@@ -11,9 +12,9 @@ class detectFace():
 
         faces = faceCascade.detectMultiScale(
             self.gray,
-            scaleFactor = 1.3,
-            minNeighbors = 5,
-            minSize = (30,30),
+            scaleFactor = 1.10,
+            minNeighbors = 8,
+            minSize = (55,55),
             flags = cv2.cv.CV_HAAR_SCALE_IMAGE
         )
         self.face = closestFace(faces) #get closest face
@@ -26,6 +27,9 @@ class detectFace():
         return self.img
 
 def closestFace(faces):
+    if(len(faces) < 1):
+        print('No face detected.')
+        sys.exit()
     biggestRect = faces[0]
     for i in range(len(faces)):
         rect = faces[i]
@@ -41,6 +45,25 @@ def get_roi_color(face):
     temp = face.getFace()
     tempIm = face.getImage()
     return tempIm[temp[1]:temp[1]+temp[3], temp[0]:temp[0]+temp[2]]
+
+def filterSmile(face):
+    smileCascade = cv2.CascadeClassifier("haarcascade_smile.xml")
+    smiles = smileCascade.detectMultiScale(
+    get_roi_gray(face),
+    scaleFactor = 2.0,
+    minNeighbors=22,
+    minSize=(25, 25),
+    flags=cv2.cv.CV_HAAR_SCALE_IMAGE)
+    print(smiles)
+
+    #filteredSmile = smiles[0]
+    #for smile in smiles:
+    #    if (smile[1] > filteredSmile[1]):
+    #        filteredSmile = smile
+    if (len(smiles) >= 1):
+        return True
+    else:
+        return False
 
 #Filter through detected "mouths" for the actual mouth
 def filterMouth(face):
@@ -74,15 +97,19 @@ def filterRightEye(face):
 
 
 #Below code is for testing purposes
-face = detectFace('face2.jpg')
-mouth = filterMouth(face)
+face = detectFace('face3.jpg')
+smile = filterSmile(face)
+#mouth = filterMouth(face)
 eyeL = filterLeftEye(face)
 eyeR = filterRightEye(face)
 
-cv2.rectangle(face.getImage(),(face.getFace()[0],face.getFace()[1]),(face.getFace()[0]+face.getFace()[2],face.getFace()[1]+face.getFace()[3]),(0,255,0),2)
-cv2.rectangle(get_roi_color(face), (mouth[0],mouth[1]), (mouth[0]+mouth[2], mouth[1]+mouth[3]), (255, 0 ,0), 2)
-cv2.rectangle(get_roi_color(face), (eyeL[0],eyeL[1]), (eyeL[0]+eyeL[2], eyeL[1]+eyeL[3]), (0,0,255), 2)
-cv2.rectangle(get_roi_color(face), (eyeR[0],eyeR[1]), (eyeR[0]+eyeR[2], eyeR[1]+eyeR[3]), (0,0,255), 2)
+print(smile)
 
-cv2.imshow('img', face.getImage())
+cv2.rectangle(face.getImage(),(face.getFace()[0],face.getFace()[1]),(face.getFace()[0]+face.getFace()[2],face.getFace()[1]+face.getFace()[3]),(0,255,0),2)
+#cv2.rectangle(get_roi_color(face), (mouth[0],mouth[1]), (mouth[0]+mouth[2], mouth[1]+mouth[3]), (255, 0 ,0), 2)
+#cv2.rectangle(get_roi_color(face), (smile[0],smile[1]), (smile[0]+smile[2], smile[1]+smile[3]), (0,0,255), 2)
+#cv2.rectangle(get_roi_color(face), (eyeL[0],eyeL[1]), (eyeL[0]+eyeL[2], eyeL[1]+eyeL[3]), (0,0,255), 2)
+#cv2.rectangle(get_roi_color(face), (eyeR[0],eyeR[1]), (eyeR[0]+eyeR[2], eyeR[1]+eyeR[3]), (0,0,255), 2)
+
+#cv2.imshow('img', face.getImage())
 cv2.waitKey(0)
