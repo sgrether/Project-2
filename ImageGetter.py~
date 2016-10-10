@@ -1,0 +1,30 @@
+#Author: Dustin Grady
+#Function: Periodically takes pictures using webcam and saves them temporarily for processing
+
+import cv2
+import cv
+
+def timer(time):
+    #time = 0
+    cv2.namedWindow("Camera Preview")
+    vc = cv2.VideoCapture(0)
+
+    if vc.isOpened(): # try to get the first frame
+        rval, frame = vc.read()
+    else:
+        rval = False
+
+    print "\n\n\n\n\nTaking photos.."
+
+    while rval:
+        time += 1 #Testing
+        cv2.imshow("Camera Preview", frame)
+        rval, frame = vc.read()
+        key = cv2.waitKey(40) & 0xFF # & 0xFF is for 64-bit support
+        if key == 27: #esc to exit
+            break
+        if time % 70 == 0: #Testing
+            cv.SaveImage("webcam.jpg", cv.fromarray(frame))
+            #img = cv.LoadImage("webcam.jpg") # input image
+
+timer(0)#Test call to function
