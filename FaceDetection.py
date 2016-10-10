@@ -54,7 +54,6 @@ def filterSmile(face):
     minNeighbors=22,
     minSize=(25, 25),
     flags=cv2.cv.CV_HAAR_SCALE_IMAGE)
-    print(smiles)
 
     #filteredSmile = smiles[0]
     #for smile in smiles:
@@ -97,19 +96,19 @@ def filterRightEye(face):
 
 
 #Below code is for testing purposes
-face = detectFace('face3.jpg')
-smile = filterSmile(face)
+#face = detectFace('face3.jpg')
+#smile = filterSmile(face)
 #mouth = filterMouth(face)
-eyeL = filterLeftEye(face)
-eyeR = filterRightEye(face)
+#eyeL = filterLeftEye(face)
+#eyeR = filterRightEye(face)
 
-print(smile)
+#print(smile)
 
-cv2.rectangle(face.getImage(),(face.getFace()[0],face.getFace()[1]),(face.getFace()[0]+face.getFace()[2],face.getFace()[1]+face.getFace()[3]),(0,255,0),2)
+#cv2.rectangle(face.getImage(),(face.getFace()[0],face.getFace()[1]),(face.getFace()[0]+face.getFace()[2],face.getFace()[1]+face.getFace()[3]),(0,255,0),2)
 #cv2.rectangle(get_roi_color(face), (mouth[0],mouth[1]), (mouth[0]+mouth[2], mouth[1]+mouth[3]), (255, 0 ,0), 2)
 #cv2.rectangle(get_roi_color(face), (smile[0],smile[1]), (smile[0]+smile[2], smile[1]+smile[3]), (0,0,255), 2)
 #cv2.rectangle(get_roi_color(face), (eyeL[0],eyeL[1]), (eyeL[0]+eyeL[2], eyeL[1]+eyeL[3]), (0,0,255), 2)
 #cv2.rectangle(get_roi_color(face), (eyeR[0],eyeR[1]), (eyeR[0]+eyeR[2], eyeR[1]+eyeR[3]), (0,0,255), 2)
 
 #cv2.imshow('img', face.getImage())
-cv2.waitKey(0)
+#cv2.waitKey(0)
