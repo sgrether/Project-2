@@ -1,5 +1,5 @@
 import FaceDetection
 
-face = FaceDetection.detectFace('webcam.jpg')
-smile = FaceDetection.filterSmile(face)
+face = FaceDetection.Face('webcam.jpg')
+smile = FaceDetection.findSmile(face)
 print(smile)
