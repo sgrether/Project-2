@@ -1,5 +1,6 @@
 #Author: Dustin Grady
-#Function: Takes pictures using webcam when the space bar is pressed and saves them to the directory
+#Function: Takes pictures using webcam when the space bar is pressed and saves them to the directory for processing by other function
+#Status: Working
 
 import cv2
 import cv
@@ -21,7 +22,7 @@ def getImage():
         key = cv2.waitKey(40) & 0xFF # & 0xFF is for 64-bit support
         if key == 27: #esc to exit
             break
-        
+
         if key == 32: #Take photo with space bar
             cv.SaveImage("webcam.jpg", cv.fromarray(frame))
             #img = cv.LoadImage("webcam.jpg") # input image

@@ -1,5 +1,6 @@
 #Author: Dustin Grady
-#Function: Identify smiles within an image
+#Function: Identify smiles within an image using haarcascades and return a bool after analyzing
+#Status: Working/ fully implemented into FaceDetection.py
 
 import cv2
 import numpy as np
@@ -10,7 +11,7 @@ faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 def checkForSmile():
     frame = cv2.imread('webcam.jpg')
-    img = frame
+    #img = frame
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     faces = faceCascade.detectMultiScale(
