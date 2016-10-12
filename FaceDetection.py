@@ -81,7 +81,7 @@ def findSmile(face):
     smileCascade = cv2.CascadeClassifier("haarcascade_smile.xml")
     smiles = smileCascade.detectMultiScale(
     get_roi_gray(face),
-    scaleFactor = 1.5,
+    scaleFactor = 1.65,
     minNeighbors = 22,
     minSize = (25, 25),
     flags=cv2.cv.CV_HAAR_SCALE_IMAGE)
