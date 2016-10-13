@@ -22,6 +22,7 @@ the photo be analyzed. Once that is done the file ImageGetter.py retrieves that 
 The script FaceDetection.py which analyzes the face and tells the user whether or not they were smiling. 
 
 It will then reference the script EyeTrack.py which tells the user whether or not their eyes blinked when they took the photo. 
+
 EyeTrack will work with eye glasses if the environment your in has good lighting which is important to get good results from the 
 detection program. 
 
