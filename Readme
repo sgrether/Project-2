@@ -5,7 +5,9 @@ Project 2, Team 20
 Authors: Scott Grether, Dustin Grady, Michael Royal
 
 Scott: Wrote FaceDetection.py to recognize different facial regions (eyes, mouth, etc).
-Dustin: Wrote ImageGetter.py, main.py and the SmileDetector code which Scott implemented into FaceDetection.py .
+
+Dustin: Wrote ImageGetter.py, main.py and the SmileDetector code which Scott implemented into FaceDetection.py 
+
 Michael: Wrote EyeTrack.py and provided a majority of our research during the development of the project.
 
 GitHub: https://github.com/sgrether/Project-2
@@ -14,7 +16,7 @@ GitHub: https://github.com/sgrether/Project-2
 Our project is the Virtual Photographer it deals with Face and Eye detection. So when the user runs the file
 Main.py it will start up the Program GUI and Webcam. 
 
-Asking the user to take a snapshot of themselves by pressing the 'Space Bar' and then press the 'Esc' key to have 
+Asking the user to take a snapshot of themselves by pressing the 'Space Bar'and then press the 'Esc' key to have 
 the photo be analyzed. Once that is done the file ImageGetter.py retrieves that image saved to the system. 
 
 The script FaceDetection.py which analyzes the face and tells the user whether or not they were smiling. 
