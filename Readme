@@ -4,6 +4,10 @@ Project 2, Team 20
 
 Authors: Scott Grether, Dustin Grady, Michael Royal
 
+Scott: Wrote FaceDetection.py to recognize different facial regions (eyes, mouth, etc).
+Dustin: Wrote ImageGetter.py, main.py and the SmileDetector code which Scott implemented into FaceDetection.py .
+Michael: Wrote EyeTrack.py and provided a majority of our research during the development of the project.
+
 GitHub: https://github.com/sgrether/Project-2
 
 
@@ -19,4 +23,8 @@ It will then reference the script EyeTrack.py which tells the user whether or no
 EyeTrack will work with eye glasses if the environment your in has good lighting which is important to get good results from the 
 detection program. 
 
+Possible improvements: Have the program work for multiple people at the same time/ red-eye detection.
+
 I hope your enjoy using Virutal Photographer because we sure had fun making it. 
+
+
