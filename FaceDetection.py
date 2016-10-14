@@ -81,7 +81,7 @@ def findSmile(face):
     smileCascade = cv2.CascadeClassifier("haarcascade_smile.xml")
     smiles = smileCascade.detectMultiScale(
     get_roi_gray(face),
-    scaleFactor = 2.25,
+    scaleFactor = 1.65,
     minNeighbors = 22,
     minSize = (25, 25),
     flags=cv2.cv.CV_HAAR_SCALE_IMAGE)
@@ -90,3 +90,56 @@ def findSmile(face):
         return True
     else:
         return False
+
+'''
+#Unused code
+#Filter through detected "mouths" for the actual mouth
+def findMouth(face):
+    mouthCascade = cv2.CascadeClassifier("Mouth.xml")
+    mouths = mouthCascade.detectMultiScale(get_roi_gray(face))
+    filteredMouth = mouths[0]
+    for mouth in mouths:
+        if (mouth[1] > filteredMouth[1]):
+            filteredMouth = mouth
+    return filteredMouth
+'''
+
+#Filter through detected "eyes" for the left eye
+def findLeftEye(face):
+    leftEyeCascade = cv2.CascadeClassifier("EyeL.xml")
+    leftEye = leftEyeCascade.detectMultiScale(get_roi_gray(face))
+    filteredLeftEye = leftEye[0]
+    for eye in leftEye:
+        if (eye[0] < filteredLeftEye[0]):
+            filteredLeftEye = eye
+    return filteredLeftEye
+
+#Filter through detected "eyes" for the right eye
+def findRightEye(face):
+    rightEyeCascade = cv2.CascadeClassifier("EyeR.xml")
+    rightEye = rightEyeCascade.detectMultiScale(get_roi_gray(face))
+    filteredRightEye = rightEye[0]
+    for eye in rightEye:
+        if (eye[0] > filteredRightEye[0]):
+            filteredRightEye = eye
+    return filteredRightEye
+
+'''
+Below code is for testing purposes
+'''
+#face = detectFace('face3.jpg')
+#smile = findSmile(face)
+#mouth = findMouth(face)
+#eyeL = findLeftEye(face)
+#eyeR = findRightEye(face)
+
+#print(smile)
+
+#cv2.rectangle(face.getImage(),(face.getFace()[0],face.getFace()[1]),(face.getFace()[0]+face.getFace()[2],face.getFace()[1]+face.getFace()[3]),(0,255,0),2)
+#cv2.rectangle(get_roi_color(face), (mouth[0],mouth[1]), (mouth[0]+mouth[2], mouth[1]+mouth[3]), (255, 0 ,0), 2)
+#cv2.rectangle(get_roi_color(face), (smile[0],smile[1]), (smile[0]+smile[2], smile[1]+smile[3]), (0,0,255), 2)
+#cv2.rectangle(get_roi_color(face), (eyeL[0],eyeL[1]), (eyeL[0]+eyeL[2], eyeL[1]+eyeL[3]), (0,0,255), 2)
+#cv2.rectangle(get_roi_color(face), (eyeR[0],eyeR[1]), (eyeR[0]+eyeR[2], eyeR[1]+eyeR[3]), (0,0,255), 2)
+
+#cv2.imshow('img', face.getImage())
+#cv2.waitKey(0)
